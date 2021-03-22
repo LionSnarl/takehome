@@ -1,6 +1,6 @@
 
 
-export default function Inputs() {
+export default function Inputs({name}) {
 
 
   //To-do access the props being passed from parent component 
@@ -12,10 +12,10 @@ export default function Inputs() {
   return (
     <>
       <p> Input component </p>
-      <label> Label here </label>
+      <label> {name} </label>
       <input 
         type="text"
-        name="inputName"
+        name={name}
         value=""
         onChange={e => handleChange()}
       />

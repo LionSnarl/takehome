@@ -42,7 +42,7 @@ export default function Forms() {
         //Gather our existing state and its nested properties and save a copy of it.
         let newObject = {...numInputs};
 
-        //Reassign our new copy with our new object pushed into the array as a new object.
+        //Reassign our new copy with our new object pushed into the array.
         newObject.[value].push({name:uniqueName, value:""});
 
         //Save our new version of the state. 

@@ -43,6 +43,8 @@ export default function Forms() {
 
         // Destructuring our event into target, then further destructuring our target into an easily accessible key for dynamic identification later on.
         const {target: {value} } = event
+
+        console.log("check value", typeof([value]))
         
         // Toggle for a conditional later that will decide if the new input has a parent key in state or not.
         let isUniqueParent = null
@@ -105,33 +107,45 @@ export default function Forms() {
    //push every path into an array
     
 
-
-   const objectToPaths = (data) => {
-    var validId = /^[a-z_$][a-z0-9_$]*$/i;
-    var result = [];
-    doIt(data, "");
-    return result;
+//Recursive function allows us to map through the object and return back all of the state objects paths. 
+//    const objectToPaths = (data) => {
+//     let validId = /^[a-z_$][a-z0-9_$]*$/i;
+//     let result = [];
+//     doIt(data, "");
+//     let valuesInArray = result.map(value => {return value.split('.').slice(1).reduce((o,i)=>o[i], speechInputs)})
+//     console.log("result array", <Story {...valuesInArray}/>)
+//     return (<Story {...valuesInArray}/>);
   
-    function doIt(data, s) {
-      if (data && typeof data === "object") {
-        if (Array.isArray(data)) {
-          for (var i = 0; i < data.length; i++) {
-            doIt(data[i], s + "[" + i + "]");
-          }
-        } else {
-          for (var p in data) {
-            if (validId.test(p)) {
-              doIt(data[p], s + "." + p);
-            } else {
-              doIt(data[p], s + "[\"" + p + "\"]");
-            }
-          }
-        }
-      } else {
-        result.push(s);
-      }
-    }
-  }
+//     function doIt(data, s) {
+//       if (data && typeof data === "object") {
+//         if (Array.isArray(data)) {
+//           for (let i = 0; i < data.length; i++) {
+//             doIt(data[i], s + "[" + i + "]");
+//           }
+//         } else {
+//           for (let p in data) {
+//             if (validId.test(p)) {
+//               doIt(data[p], s + "." + p);
+//             } else {
+//               doIt(data[p], s + "[\"" + p + "\"]");
+//             }
+//           }
+//         }
+//       } else {
+//         result.push(s);
+//       }
+//     }
+
+//         function convertString(string) {
+//             string.split('.').slice(1).reduce((o,i)=>o[i], speechInputs)
+//             // return string.split().reduce((o,i) => o[i], speechInputs)
+//             // arr.map(value => {
+//             //     return value.reduce((o,i)=>o[i], obj)
+//             // })
+            
+//         }
+//     }
+  
 
 
    const getPartsOfSpeech = () => {
@@ -249,7 +263,7 @@ export default function Forms() {
       <hr />
       
       { storyComplete === true ? 
-      objectToPaths(speechInputs) : "Please fill out the input fields above, and press submit to see the story!"}
+      <Story allState={speechInputs} /> : "Please fill out the input fields above, and press submit to see the story!"}
       
     </>
   );

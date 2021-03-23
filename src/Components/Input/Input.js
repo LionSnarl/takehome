@@ -2,7 +2,7 @@ export default function Inputs({parentKey, name, value, handleChange}) {
   return (
     <>
       <label> {name} </label>
-      <input 
+      <input
         type="text"
         name={name}
         id={parentKey}
